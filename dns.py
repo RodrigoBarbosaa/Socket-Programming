@@ -38,6 +38,7 @@ while True:
         
         if conexoes_clientes == 2:
             udp_server_socket.close()
+            servico_oferecido.clear()
             break
     else:
         
