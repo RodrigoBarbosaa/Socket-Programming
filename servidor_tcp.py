@@ -1,14 +1,26 @@
 import socket 
-import time 
 
-host = 'localhost'
-port = 50000
+host_udp = 'localhost'
+porta_dns = 50003
+
+socket_udp = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+informacoes = "calculadora_tcp:localhost:50000"
+
+socket_udp.sendto(informacoes.encode(), (host_udp, porta_dns))
+
+socket_udp.close()
+
+######################################################
 
 # criando socket TCP
+
+host_tcp = 'localhost'
+porta_tcp = 50000
+
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # definido valores e colocando no modo de escuta
-s.bind((host, port))
+s.bind((host_tcp, porta_tcp))
 s.listen()
 print('Agurardando conexão de cliente')
 
