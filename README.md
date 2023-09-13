@@ -3,6 +3,7 @@ Sockets programming using client-server architecture with TCP and UDP version
 
 # Como executar o projeto? 
 
+# 1)
 Primeiro, deve-se abrir o servidor DNS ("dns.py") para começar a aceitar comunicação com os servidores UDP e TCP.
 Após isso, deve-se inicializar o servidor UDP ("servidor_udp.py") e servido TCP ("servidor_tcp.py") não necessariamente nessa ordem. 
 Dpois de abertos, irão se conectar automaticamente ao servidor dns, que armazenará seu serviço e a sua porta.
