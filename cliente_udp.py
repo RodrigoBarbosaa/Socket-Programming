@@ -1,21 +1,22 @@
 import socket
 import time
 
-udp_host = 'localhost'
-udp_port = 50003
+# Conexão com o DNS
+dns_host = 'localhost'
+dns_port = 50003
 
 lista_tempos_resposta = list()
 
-udp_client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+udp_dns_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 service_name = "calculadora_udp"
 
-udp_client_socket.sendto(service_name.encode(), (udp_host, udp_port))
+udp_dns_socket.sendto(service_name.encode(), (dns_host, dns_port))
 
-data, addr = udp_client_socket.recvfrom(1024)
+data, addr = udp_dns_socket.recvfrom(1024)
 response = data.decode()
 
-udp_client_socket.close()
+udp_dns_socket.close()
 
 if response == "Not Found":
     print(f"Serviço '{service_name}' não encontrado.")
@@ -24,8 +25,9 @@ else:
     print(f"Endereço do servidor UDP para '{service_name}': {response}")
 
     # Cliente UDP para o servidor UDP obtido do servidor de nomes
-    udp_host, udp_port = response.split(':')
-    udp_client_socket.close()
+    resposta_formatada = str(response)
+    
+    udp_host, udp_port = resposta_formatada.split(':')
      
     expression = ['5 + 5', '10 * 3', '20 - 7', '40 / 5', '8 * 10'] # 5 solicitações
     
@@ -33,10 +35,13 @@ else:
     
     
 for i in range(0, 5):   
+    inicio_contagem = time.perf_counter()
+    
+    udp_host = 'localhost'
+    
+    print(f'host: {udp_host} porta: {udp_port}')
     
     print(f'Quanto é {expression[i]}?')
-    
-    inicio_contagem = time.perf_counter()
     
     udp_client_socket.sendto(expression[i].encode(), (udp_host, int(udp_port)))
 
