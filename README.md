@@ -19,4 +19,4 @@ iniciar os clientes ("cliente_tcp.py") e ("cliente_udp.py"). Não necessariament
 O servidor devolve a resposta para as 5 perguntas (feitas uma de cada vez) e o tempo é cronometrado para cada troca de mensagens.
 Após concluída a comunicação, os serviços são encerrados e o DNS apaga os dados dos servidores de seu registro.
 
-...
+..
