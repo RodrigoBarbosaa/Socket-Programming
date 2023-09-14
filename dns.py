@@ -9,7 +9,7 @@ conexoes_clientes = 0
 udp_server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 udp_server_socket.bind((udp_host, porta_udp))
 
-print('Servidor de Nomes esperando por solicitações de servidores...')
+print('DNS esperando por solicitações de servidores...')
 
 for c in range(2):
     data, addr = udp_server_socket.recvfrom(1024)
@@ -19,6 +19,8 @@ for c in range(2):
     servico_oferecido[servico] = (host, porta) # nome do serviço e porta
     
     print(f'{data.decode()} adicionado ao DNS')
+    
+print('DNS esperando por conexões de clientes...')
 
 while True:
     data, addr = udp_server_socket.recvfrom(1024)
